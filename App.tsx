@@ -69,9 +69,7 @@ export default function App() {
             </NavigationContainer>
           </SignedIn>
           <SignedOut>
-            <SafeAreaView style={styles.container}>
-              <LoginScreen />
-            </SafeAreaView>
+            <LoginScreen />
           </SignedOut>
           <Toast />
         </ClerkProvider>

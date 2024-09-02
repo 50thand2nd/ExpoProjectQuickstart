@@ -1,13 +1,14 @@
 import React from "react";
 import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
 import { SignInWithOauth } from "../components/SignInWithOauth";
+import GlobalColors from "../styles/colors";
 
 const LogoImage = require("../../assets/images/icon.png");
 
 export const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center", paddingVertical: 100 }}>
         <Image source={LogoImage} style={styles.logo} />
         <Text style={styles.appName}>Expo Project Quickstart</Text>
         <Text style={styles.appDescription}>
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    margin: 50,
+    padding: 50,
+    backgroundColor: GlobalColors.white,
   },
   logo: {
     width: 100,
