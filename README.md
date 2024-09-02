@@ -41,9 +41,10 @@
 2. $ eas login
 3. $ eas build:configure
 4. $ eas secret:push --scope project --env-file .env
-5. $ eas build --platform ios
-6. $ eas submit -p ios
-7. Repeat steps 5 and 6 for new builds
+5. $ eas secret:list
+6. $ eas build --platform ios
+7. $ eas submit -p ios
+8. Repeat steps 6 and 7 for new builds
 
 ### Tips
 
