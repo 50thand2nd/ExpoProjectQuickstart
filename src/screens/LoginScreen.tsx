@@ -15,7 +15,7 @@ export const LoginScreen = () => {
           A template for your next great React Native app
         </Text>
       </View>
-      <View>
+      <View style={{ paddingBottom: 100 }}>
         <SignInWithOauth text="Sign in with Google" strategy="oauth_google" />
         <SignInWithOauth text="Sign in with Apple" strategy="oauth_apple" />
       </View>
