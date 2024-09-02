@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "ExpoProjectQuickstart",
+    "slug": "ExpoProjectQuickstart",
+    "scheme": "com.eashereum.ExpoProjectQuickstart",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.eashereum.ExpoProjectQuickstart",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1d608707-b91a-4d2a-83c9-28dfdc990bbd"
+      }
+    },
+    "plugins": ["expo-font"],
+    "owner": "eashereum"
+  }
+}
