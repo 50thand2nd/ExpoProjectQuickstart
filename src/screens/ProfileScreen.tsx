@@ -1,19 +1,66 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import {
+  SafeAreaView,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+} from "react-native";
 import { SignOut } from "../components/SignOut";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RouteProp } from "@react-navigation/native";
+import GlobalColors from "../styles/colors";
 
-// Define the types for route and navigation
-type ProfileScreenProps = {
-  route: RouteProp<any>; // Replace 'any' with your specific route params type if known
-  navigation: StackNavigationProp<any>; // Replace 'any' with your specific stack param list type if known
-};
+// @ts-ignore
+const BackImage = require("../../assets/images/back.png");
 
-export const ProfileScreen = ({ route, navigation }: ProfileScreenProps) => {
+export const ProfileScreen = ({ route, navigation }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerRow}>
+        <Pressable
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Image
+            source={BackImage}
+            style={{
+              width: 28,
+              height: 28,
+              tintColor: GlobalColors.black,
+            }}
+          />
+        </Pressable>
+      </View>
       <SignOut />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: GlobalColors.white,
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 24,
+    paddingBottom: 12,
+  },
+  welcomeMessage: {
+    fontSize: 36,
+    fontFamily: "Platypi-Bold",
+  },
+  title: {
+    fontSize: 28,
+    lineHeight: 40,
+    fontFamily: "Platypi-Bold",
+  },
+  input: {
+    padding: 24,
+    fontSize: 18,
+    fontFamily: "Platypi-Regular",
+  },
+});

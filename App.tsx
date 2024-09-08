@@ -10,6 +10,7 @@ import { OfflineScreen } from "./src/screens/OfflineScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HomeTabs } from "./src/navigation/HomeTabs";
+import { ProfileScreen } from "./src/screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,7 @@ export default function App() {
             <NavigationContainer>
               <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Home" component={HomeTabs} />
+                <Stack.Screen name="Profile" component={ProfileScreen} />
               </Stack.Navigator>
             </NavigationContainer>
           </SignedIn>
