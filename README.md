@@ -7,23 +7,23 @@
 3. $ yarn install
 4. yarn add --dev typescript @types/react @types/react-native
 5. npx tsc --init
+6. Change "scheme": "com.name_of_your_app.app" to the expo part of /app.json
 
 ### Linking EAS
 
 1. Create an account at: https://expo.dev/signup and add your project
 2. $ yarn install -g eas-cli
 3. Paste the $ eas token command that shows up on the dashboard
-4. $ eas secret:create --scope project --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_test_dHJ1c3R5LWNpY2FkYS03LmNsZXJrLmFjY291bnRzLmRldiQ --type string
-5. Run step 4 for every .env variable you have
-6. $ eas secret:list
 
 ### Linking Clerk
 
 1. Create a new app in https://dashboard.clerk.com/
 2. Add EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in .env
-3. Change "scheme": "com.name_of_your_app.app" to the expo part of /app.json
-4. Add desired login methods to /src/screens/LoginScreen.js
-5. Make sure to add token to all request headers, as shown in /src/screens/HomeScreen.js
+3. $ eas secret:create --scope project --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_test_dHJ1c3R... --type string
+4. Run step 4 for every .env variable you have
+5. $ eas secret:list
+6. Add desired login methods to /src/screens/LoginScreen.js
+7. Make sure to add token to all request headers, as shown in /src/screens/HomeScreen.js
 
 ### Running The App
 
