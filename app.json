@@ -2,7 +2,7 @@
   "expo": {
     "name": "ExpoProjectQuickstart",
     "slug": "ExpoProjectQuickstart",
-    "scheme": "com.eashereum.ExpoProjectQuickstart",
+    "scheme": "com.50thand2nd.ExpoProjectQuickstart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.eashereum.ExpoProjectQuickstart",
+      "bundleIdentifier": "com.50thand2nd.ExpoProjectQuickstart",
       "buildNumber": "1"
     },
     "android": {
@@ -32,6 +32,6 @@
       }
     },
     "plugins": ["expo-font"],
-    "owner": "eashereum"
+    "owner": "50thand2nd"
   }
 }
