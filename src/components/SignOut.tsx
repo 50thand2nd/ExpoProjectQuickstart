@@ -80,6 +80,7 @@ export const SignOut = () => {
                 },
                 {
                   text: "Delete",
+                  style: "destructive",
                   onPress: () => {
                     deleteAccount();
                   },
