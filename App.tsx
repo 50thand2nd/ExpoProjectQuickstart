@@ -8,9 +8,13 @@ import { useNetInfo } from "@react-native-community/netinfo";
 import Toast from "react-native-toast-message";
 import { OfflineScreen } from "./src/screens/OfflineScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { HomeTabs } from "./src/navigation/HomeTabs";
 import { ProfileScreen } from "./src/screens/ProfileScreen";
+import { WelcomeScreen } from "./src/screens/WelcomeScreen";
 
 const Stack = createStackNavigator();
 
@@ -67,6 +71,15 @@ export default function App() {
               <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Home" component={HomeTabs} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+
+                <Stack.Screen
+                  name="Welcome Screen"
+                  component={WelcomeScreen}
+                  options={{
+                    gestureDirection: "vertical",
+                    ...TransitionPresets.ModalSlideFromBottomIOS,
+                  }}
+                />
               </Stack.Navigator>
             </NavigationContainer>
           </SignedIn>

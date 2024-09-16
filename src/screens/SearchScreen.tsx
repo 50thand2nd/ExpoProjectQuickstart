@@ -20,12 +20,7 @@ type SearchScreenProps = {
   navigation: StackNavigationProp<any>; // Replace 'any' with your specific stack param list type if known
 };
 
-type Query = {
-  query: string;
-};
-
 export const SearchScreen = ({ route, navigation }: SearchScreenProps) => {
-  const { query } = route.params as Query;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.welcomeRow}>

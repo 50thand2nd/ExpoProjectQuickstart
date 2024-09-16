@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Image,
@@ -31,6 +31,8 @@ type ExampleFetchResponse = {
 export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { isSignedIn, user, isLoaded: userIsLoaded } = useUser();
+
+  const hasWelcomed = useRef(false);
 
   const [expoPushToken, setExpoPushToken] = useState<string>("");
 
@@ -111,6 +113,15 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
       });
     }
   }, [isLoaded, userIsLoaded, user, isSignedIn]);
+
+  useEffect(() => {
+    if (!hasWelcomed.current) {
+      navigation.navigate("Welcome Screen");
+
+      // set the ref variable to true
+      hasWelcomed.current = true;
+    }
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
