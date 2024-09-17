@@ -15,6 +15,7 @@ import {
 import { HomeTabs } from "./src/navigation/HomeTabs";
 import { ProfileScreen } from "./src/screens/ProfileScreen";
 import { WelcomeScreen } from "./src/screens/WelcomeScreen";
+import AuthScreen from "./src/screens/AuthScreen";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,8 @@ const loadFonts = async () => {
   await Font.loadAsync({
     "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
     "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+    "Platypi-Regular": require("./assets/fonts/Platypi-Regular.ttf"),
+    "Platypi-Bold": require("./assets/fonts/Platypi-Bold.ttf"),
   });
 };
 
@@ -84,7 +87,12 @@ export default function App() {
             </NavigationContainer>
           </SignedIn>
           <SignedOut>
-            <LoginScreen />
+            <NavigationContainer>
+              <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Auth" component={AuthScreen} />
+              </Stack.Navigator>
+            </NavigationContainer>
           </SignedOut>
           <Toast />
         </ClerkProvider>

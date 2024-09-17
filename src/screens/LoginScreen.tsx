@@ -1,11 +1,27 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+} from "react-native";
 import { SignInWithOauth } from "../components/SignInWithOauth";
 import GlobalColors from "../styles/colors";
+import { RouteProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 const LogoImage = require("../../assets/images/icon.png");
+const EmailImage = require("../../assets/images/email.png");
 
-export const LoginScreen = () => {
+// Define the types for route and navigation
+type LoginScreenProps = {
+  route: RouteProp<any>; // Replace 'any' with your specific route params type if known
+  navigation: StackNavigationProp<any>; // Replace 'any' with your specific stack param list type if known
+};
+
+export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center", paddingVertical: 100 }}>
@@ -15,7 +31,25 @@ export const LoginScreen = () => {
           A template for your next great React Native app
         </Text>
       </View>
-      <View style={{ paddingBottom: 100 }}>
+      <View style={{ paddingBottom: 50 }}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Auth");
+          }}
+        >
+          <Image
+            source={EmailImage}
+            style={{ width: 20, height: 20, marginRight: 10 }}
+          />
+          <Text
+            style={{
+              fontFamily: "Montserrat-Regular",
+            }}
+          >
+            Sign in with email
+          </Text>
+        </Pressable>
         <SignInWithOauth text="Sign in with Google" strategy="oauth_google" />
         <SignInWithOauth text="Sign in with Apple" strategy="oauth_apple" />
       </View>
@@ -37,16 +71,28 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   appName: {
-    fontSize: 50,
+    fontSize: 48,
     fontWeight: "bold",
     marginTop: 10,
+    marginHorizontal: 20,
     textAlign: "center",
-    fontFamily: "Montserrat-Bold",
+    fontFamily: "Platypi-Bold",
   },
   appDescription: {
-    fontSize: 22,
-    marginTop: 18,
+    fontSize: 20,
+    marginTop: 24,
+    marginHorizontal: 20,
     textAlign: "center",
     fontFamily: "Montserrat-Regular",
+  },
+  button: {
+    backgroundColor: GlobalColors.lightgrey,
+    borderRadius: 20,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 300,
+    marginBottom: 12,
+    flexDirection: "row",
   },
 });

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import * as WebBrowser from "expo-web-browser";
 import { useOAuth } from "@clerk/clerk-expo";
-import { StyleSheet, Pressable, Text } from "react-native";
+import { Image, StyleSheet, Pressable, Text } from "react-native";
 import GlobalColors from "../styles/colors";
 import Toast from "react-native-toast-message";
 
@@ -12,6 +12,9 @@ type SignInWithOauthProps = {
   text: string;
   strategy: "oauth_apple" | "oauth_google";
 };
+
+const GoogleImage = require("../../assets/images/google.png");
+const AppleImage = require("../../assets/images/apple.png");
 
 export const SignInWithOauth = ({ text, strategy }: SignInWithOauthProps) => {
   const { startOAuthFlow } = useOAuth({ strategy: strategy });
@@ -49,6 +52,10 @@ export const SignInWithOauth = ({ text, strategy }: SignInWithOauthProps) => {
 
   return (
     <Pressable style={styles.button} onPress={onPress} disabled={signingIn}>
+      <Image
+        source={strategy === "oauth_google" ? GoogleImage : AppleImage}
+        style={{ width: 20, height: 20, marginRight: 10 }}
+      />
       <Text
         style={{
           fontFamily: "Montserrat-Regular",
@@ -67,7 +74,8 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    width: 300,
+    // width: "48%",
     marginBottom: 12,
+    flexDirection: "row",
   },
 });
