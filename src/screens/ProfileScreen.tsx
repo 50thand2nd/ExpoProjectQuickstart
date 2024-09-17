@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 150,
   },
   fullName: {
+    marginTop: 12,
     fontSize: 24,
     fontFamily: "Montserrat-Bold",
   },
