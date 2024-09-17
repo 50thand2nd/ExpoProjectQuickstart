@@ -218,7 +218,6 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: GlobalColors.white,
   },
   headerRow: {
