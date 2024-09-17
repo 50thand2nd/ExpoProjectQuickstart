@@ -15,6 +15,7 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import GlobalColors from "../styles/colors";
 import { ScrollView } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 // Define the types for route and navigation
 type AuthScreenProps = {
@@ -61,8 +62,16 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
       } else {
         console.error(JSON.stringify(signInAttempt, null, 2));
       }
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: err?.errors?.[0]?.message || "Error",
+        text2: err?.errors?.[0]?.longMessage || "",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 
@@ -80,8 +89,15 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
       setPendingVerification(true);
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: err?.errors?.[0]?.longMessage || "An error occurred",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 
@@ -101,8 +117,16 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
       } else {
         console.error(JSON.stringify(completeSignUp, null, 2));
       }
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: err?.errors?.[0]?.message || "Error",
+        text2: err?.errors?.[0]?.longMessage || "",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 
@@ -132,13 +156,13 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
               style={styles.input}
               autoCapitalize="none"
               value={emailAddress}
-              placeholder="Email..."
+              placeholder="Email"
               onChangeText={(email) => setEmailAddress(email)}
             />
             <TextInput
               style={styles.input}
               value={password}
-              placeholder="Password..."
+              placeholder="Password"
               secureTextEntry={true}
               onChangeText={(password) => setPassword(password)}
             />
