@@ -5,9 +5,10 @@
 1. $ npx create-expo-app YourProjectName --template https://github.com/50thand2nd/ExpoProjectQuickstart
 2. $ cd YourProjectName
 3. $ yarn install
-4. yarn add --dev typescript @types/react @types/react-native
-5. npx tsc --init
-6. Change "scheme": "com.name_of_your_app.app" to the expo part of /app.json
+4. $ yarn add --dev typescript @types/react @types/react-native
+5. $ npx tsc --init
+6. $ rm -rf .git
+7. Change "scheme": "com.name_of_your_app.app" to the expo part of /app.json
 
 ### Linking EAS
 
