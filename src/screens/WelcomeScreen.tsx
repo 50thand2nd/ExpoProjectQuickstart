@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   SafeAreaView,
   Pressable,
@@ -8,15 +8,11 @@ import {
   Image,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { SignOut } from "../components/SignOut";
 import { ScrollView } from "react-native-gesture-handler";
 import GlobalColors from "../styles/colors";
-import { useAuth, useUser } from "@clerk/clerk-expo";
 import { SimpleAnimation } from "react-native-simple-animations";
 
-// @ts-ignore
 const LogoImage = require("../../assets/images/icon.png");
-// @ts-ignore
 const HomeImage = require("../../assets/images/home.png");
 
 export const DetailRow = ({ image, detailTitle, detailText }) => (
@@ -155,7 +151,7 @@ export const WelcomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: GlobalColors.white,
   },
   headerRow: {
     flexDirection: "row",
@@ -167,11 +163,13 @@ const styles = StyleSheet.create({
   welcomeMessage: {
     fontSize: 36,
     fontFamily: "Montserrat-Bold",
+    color: GlobalColors.black,
   },
   title: {
     fontSize: 28,
     lineHeight: 40,
     fontFamily: "Montserrat-Bold",
+    color: GlobalColors.black,
   },
   input: {
     padding: 24,
@@ -186,6 +184,7 @@ const styles = StyleSheet.create({
   detailImage: {
     width: 36,
     height: 36,
+    tintColor: GlobalColors.black,
   },
   fullName: {
     fontSize: 28,
@@ -193,22 +192,23 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 24,
     paddingBottom: 24,
+    color: GlobalColors.black,
   },
   email: {
     fontSize: 18,
     fontFamily: "Montserrat-Regular",
     paddingTop: 24,
-    // textAlign: "center",
+    color: GlobalColors.black,
   },
   detailTextBold: {
     fontSize: 18,
     fontFamily: "Montserrat-Bold",
-    // textAlign: "center",
+    color: GlobalColors.black,
   },
   detailText: {
     fontSize: 18,
     fontFamily: "Montserrat-Regular",
-    // textAlign: "center",
+    color: GlobalColors.black,
   },
   getStartedButton: {
     marginLeft: 24,

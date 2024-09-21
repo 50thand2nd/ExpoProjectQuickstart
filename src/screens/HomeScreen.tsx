@@ -114,8 +114,7 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
         }
       );
     } catch (error) {
-      alert(`Error upserting token: ${error}`);
-      console.error("Error stack:", error.stack);
+      console.error("Error upserting token:", error.stack);
     }
   };
 

@@ -14,7 +14,6 @@ import { useAuth, useUser } from "@clerk/clerk-expo";
 import { BACKEND_URL } from "../constants/constants";
 import Toast from "react-native-toast-message";
 
-// @ts-ignore
 const BackImage = require("../../assets/images/back.png");
 
 export const ProfileScreen = ({ route, navigation }) => {
