@@ -96,11 +96,35 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
     }
   };
 
+  const upsertToken = async (notification_token) => {
+    console.log("upserting token", notification_token);
+    const token = await getToken();
+    try {
+      await fetch(
+        `${BACKEND_URL}/save_notification_token/` + user.primaryEmailAddress,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            token: notification_token,
+          }),
+        }
+      );
+    } catch (error) {
+      alert(`Error upserting token: ${error}`);
+      console.error("Error stack:", error.stack);
+    }
+  };
+
   useEffect(() => {
     if (userIsLoaded && user && isSignedIn) {
       exampleFetch();
       registerForPushNotificationsAsync().then((token) => {
         setExpoPushToken(token || "");
+        upsertToken(token);
       });
     }
 

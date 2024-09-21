@@ -25,15 +25,15 @@
 6. Add desired login methods to /src/screens/LoginScreen.js
 7. Make sure to add token to all request headers, as shown in /src/screens/HomeScreen.js
 
-### Running The App
-
-1. $ npx expo start
-
 ### Adding Notifications
 
 1. $ npx expo install expo-notifications
 2. $ Add your projectId from app.json to src/screens/HomeScreen.js
 3. Store the generated token in your database
+
+### Running The App
+
+1. $ npx expo start
 
 ### Publishing To Apple App Store
 

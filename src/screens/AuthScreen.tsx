@@ -58,7 +58,6 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
 
       if (signInAttempt.status === "complete") {
         await setSignInActive({ session: signInAttempt.createdSessionId });
-        navigation.navigate("Home");
       } else {
         console.error(JSON.stringify(signInAttempt, null, 2));
       }
@@ -113,7 +112,6 @@ export default function AuthScreen({ route, navigation }: AuthScreenProps) {
 
       if (completeSignUp.status === "complete") {
         await setSignUpActive({ session: completeSignUp.createdSessionId });
-        navigation.navigate("Home");
       } else {
         console.error(JSON.stringify(completeSignUp, null, 2));
       }
