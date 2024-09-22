@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, Text } from "react-native";
+import { Image, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GlobalColors from "../styles/colors";
 

@@ -18,7 +18,7 @@ const BackImage = require("../../assets/images/back.png");
 
 export const ProfileScreen = ({ route, navigation }) => {
   const { isLoaded, getToken, signOut } = useAuth();
-  const { isSignedIn, user, isLoaded: userIsLoaded } = useUser();
+  const { user, isLoaded: userIsLoaded } = useUser();
 
   if (!isLoaded && !userIsLoaded) {
     return null;
