@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-native";
+import { StyleSheet, Image, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GlobalColors from "../styles/colors";
 
@@ -36,15 +36,28 @@ export const HomeTabs = () => {
             image = SearchImage;
           }
           return (
-            <Image
-              source={image}
-              style={{
-                width: 28,
-                height: 28,
-                tintColor: color,
-                alignSelf: "center",
-              }}
-            />
+            <>
+              <Image
+                source={image}
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: color,
+                  alignSelf: "center",
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: color,
+                  textAlign: "center",
+                  marginTop: 8,
+                  fontFamily: "Montserrat-Regular",
+                }}
+              >
+                {route.name.replace(" Tab", "")}
+              </Text>
+            </>
           );
         },
       })}

@@ -32,6 +32,8 @@ export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
         </Text>
       </View>
       <View style={{ paddingBottom: 50 }}>
+        <SignInWithOauth text="Sign in with Apple" strategy="oauth_apple" />
+        <SignInWithOauth text="Sign in with Google" strategy="oauth_google" />
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -50,8 +52,6 @@ export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
             Sign in with email
           </Text>
         </Pressable>
-        <SignInWithOauth text="Sign in with Google" strategy="oauth_google" />
-        <SignInWithOauth text="Sign in with Apple" strategy="oauth_apple" />
       </View>
     </SafeAreaView>
   );
