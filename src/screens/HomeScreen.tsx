@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Image,
@@ -17,6 +17,10 @@ import GlobalColors from "../styles/colors";
 // Images
 const ProfileImage = require("../../assets/images/user.png");
 
+export type AiCustomResponse = {
+  response: string;
+};
+
 // Define the types for route and navigation
 type HomeScreenProps = {
   route: RouteProp<any>; // Replace 'any' with your specific route params type if known
@@ -29,12 +33,10 @@ type ExampleFetchResponse = {
 };
 
 export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  const { isLoaded, getToken } = useAuth();
   const { isSignedIn, user, isLoaded: userIsLoaded } = useUser();
 
   const hasWelcomed = useRef(false);
-
-  const [expoPushToken, setExpoPushToken] = useState<string>("");
 
   const registerForPushNotificationsAsync = async () => {
     let token;
@@ -72,15 +74,12 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
   const exampleFetch = async (): Promise<ExampleFetchResponse | undefined> => {
     try {
       const jwt = await getToken();
-      const response = await fetch(`${BACKEND_URL}/example_post`, {
-        method: "POST",
+      const response = await fetch(`${BACKEND_URL}/example?param=value`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${jwt}`,
         },
-        body: JSON.stringify({
-          param: "value",
-        }),
       });
 
       if (!response.ok) {
@@ -92,7 +91,7 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
       return data;
     } catch (err) {
       console.error(err);
-      return undefined; // or handle the error case as needed
+      return;
     }
   };
 
@@ -120,20 +119,13 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
 
   useEffect(() => {
     if (userIsLoaded && user && isSignedIn) {
-      exampleFetch();
+      // Register for push notifications
       registerForPushNotificationsAsync().then((token) => {
-        setExpoPushToken(token || "");
         upsertToken(token);
       });
-    }
 
-    // When user is loaded, print get token
-    if (isLoaded) {
-      getToken().then((jwt) => {
-        console.log("userId", userId);
-        console.log("sessionId", sessionId);
-        console.log("jwt", jwt);
-      });
+      // Call functions here
+      exampleFetch();
     }
   }, [isLoaded, userIsLoaded, user, isSignedIn]);
 

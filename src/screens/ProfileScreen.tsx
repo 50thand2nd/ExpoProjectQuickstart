@@ -29,7 +29,7 @@ export const ProfileScreen = ({ route, navigation }) => {
       const token = await getToken();
       const email = user.primaryEmailAddress.emailAddress;
       // Make a request to your server to delete the user account
-      await fetch(`${BACKEND_URL}/delete_user/${email}`, {
+      await fetch(`${BACKEND_URL}/user?email=${email}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
