@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 import { SignInWithOauth } from "../components/SignInWithOauth";
 import GlobalColors from "../styles/colors";
@@ -65,7 +67,11 @@ export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
             Sign in with email
           </Text>
         </Pressable>
-        <View>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL("https://50thand2nd.github.io/");
+          }}
+        >
           <Text
             style={{
               textAlign: "center",
@@ -73,16 +79,17 @@ export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
               margin: 12,
             }}
           >
-            By continuing, you agree to our
-            <Text style={{ color: GlobalColors.primary }}>
-              {" "}
-              Terms of Service{" "}
+            By continuing, you agree to our{" "}
+            <Text style={{ textDecorationLine: "underline" }}>
+              Terms of Service
+            </Text>{" "}
+            and{" "}
+            <Text style={{ textDecorationLine: "underline" }}>
+              Privacy Policy
             </Text>
-            and
-            <Text style={{ color: GlobalColors.primary }}> Privacy Policy</Text>
             .
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

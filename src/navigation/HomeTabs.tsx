@@ -16,7 +16,6 @@ const Tab = createBottomTabNavigator();
 export const HomeTabs = () => {
   const handleTabPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
-    // scroll to top
   };
 
   return (
