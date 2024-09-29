@@ -2,9 +2,11 @@ import React from "react";
 import { Image, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GlobalColors from "../styles/colors";
+import * as Haptics from "expo-haptics";
 
 import { HomeScreen } from "../screens/HomeScreen";
 import { SearchScreen } from "../screens/SearchScreen";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeImage = require("../../assets/images/home.png");
 const SearchImage = require("../../assets/images/search.png");
@@ -12,6 +14,11 @@ const SearchImage = require("../../assets/images/search.png");
 const Tab = createBottomTabNavigator();
 
 export const HomeTabs = () => {
+  const handleTabPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
+    // scroll to top
+  };
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -36,7 +43,14 @@ export const HomeTabs = () => {
             image = SearchImage;
           }
           return (
-            <>
+            <TouchableOpacity
+              onPress={handleTabPress}
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Image
                 source={image}
                 style={{
@@ -57,7 +71,7 @@ export const HomeTabs = () => {
               >
                 {route.name.replace(" Tab", "")}
               </Text>
-            </>
+            </TouchableOpacity>
           );
         },
       })}

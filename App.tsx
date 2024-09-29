@@ -74,15 +74,6 @@ export default function App() {
               <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Home" component={HomeTabs} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
-
-                <Stack.Screen
-                  name="Welcome Screen"
-                  component={WelcomeScreen}
-                  options={{
-                    gestureDirection: "vertical",
-                    ...TransitionPresets.ModalSlideFromBottomIOS,
-                  }}
-                />
               </Stack.Navigator>
             </NavigationContainer>
           </SignedIn>
@@ -91,6 +82,14 @@ export default function App() {
               <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Auth" component={AuthScreen} />
+                <Stack.Screen
+                  name="Welcome Screen"
+                  component={WelcomeScreen}
+                  options={{
+                    gestureDirection: "vertical",
+                    ...TransitionPresets.ModalSlideFromBottomIOS,
+                  }}
+                />
               </Stack.Navigator>
             </NavigationContainer>
           </SignedOut>

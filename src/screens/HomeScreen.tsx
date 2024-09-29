@@ -36,8 +36,6 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
   const { isLoaded, getToken } = useAuth();
   const { isSignedIn, user, isLoaded: userIsLoaded } = useUser();
 
-  const hasWelcomed = useRef(false);
-
   const registerForPushNotificationsAsync = async () => {
     let token;
 
@@ -128,15 +126,6 @@ export const HomeScreen = ({ route, navigation }: HomeScreenProps) => {
       exampleFetch();
     }
   }, [isLoaded, userIsLoaded, user, isSignedIn]);
-
-  useEffect(() => {
-    if (!hasWelcomed.current) {
-      navigation.navigate("Welcome Screen");
-
-      // set the ref variable to true
-      hasWelcomed.current = true;
-    }
-  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

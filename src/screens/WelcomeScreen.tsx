@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   SafeAreaView,
   Pressable,
@@ -7,141 +7,74 @@ import {
   View,
   Image,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
 import GlobalColors from "../styles/colors";
-import { SimpleAnimation } from "react-native-simple-animations";
+import Swiper from "react-native-swiper";
 
-const LogoImage = require("../../assets/images/icon.png");
-const HomeImage = require("../../assets/images/home.png");
-
-export const DetailRow = ({ image, detailTitle, detailText }) => (
-  <View
-    style={{
-      flexDirection: "row",
-      alignItems: "center",
-      width: "100%",
-      marginVertical: 16,
-    }}
-  >
-    <View
-      style={{
-        width: "20%",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Image source={image} style={styles.detailImage} />
-    </View>
-    <View
-      style={{
-        width: "80%",
-        marginLeft: 12,
-        paddingRight: 12,
-      }}
-    >
-      <Text numberOfLines={1} style={styles.detailTextBold}>
-        {detailTitle}
-      </Text>
-      <View style={{ height: 4 }} />
-      <Text style={styles.detailText}>{detailText}</Text>
-    </View>
-  </View>
-);
+const Welcome1Image = require("../../assets/images/welcome1.gif");
+const Welcome2Image = require("../../assets/images/welcome2.gif");
+const Welcome3Image = require("../../assets/images/welcome3.gif");
 
 export const WelcomeScreen = ({ route, navigation }) => {
+  const swiperRef = useRef(null);
+  const [swiperIndex, setSwiperIndex] = useState(0);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerRow}>
-        <Pressable
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <AntDesign name="close" size={30} color={GlobalColors.black} />
-        </Pressable>
-      </View>
       <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              paddingHorizontal: 24,
-            }}
-          >
-            <Image source={LogoImage} style={styles.userImage} />
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              paddingHorizontal: 24,
-            }}
-          >
-            <Text style={styles.fullName}>
-              Welcome to ExpoProjectQuickstart!
+        <Swiper
+          ref={swiperRef}
+          index={swiperIndex}
+          onIndexChanged={(index) => {
+            setSwiperIndex(index);
+          }}
+          loop={false}
+          showsButtons={false}
+          style={styles.wrapper}
+        >
+          <View style={styles.slide}>
+            <Image source={Welcome1Image} style={styles.detailImage} />
+            <Text style={styles.text}>Welcome to Expo Project Quickstart!</Text>
+            <Text style={styles.subtext}>
+              This is your new favorite template for building great React Native
+              apps!
             </Text>
-            <SimpleAnimation delay={0} duration={1000} fade staticType="zoom">
-              <DetailRow
-                image={HomeImage}
-                detailTitle="Build Fast"
-                detailText="Quickly build your next mobile app project"
-              />
-            </SimpleAnimation>
-            <SimpleAnimation delay={500} duration={1000} fade staticType="zoom">
-              <DetailRow
-                image={HomeImage}
-                detailTitle="Really Fast"
-                detailText="Easily customize the app to fit your needs"
-              />
-            </SimpleAnimation>
-            <SimpleAnimation
-              delay={1000}
-              duration={1000}
-              fade
-              staticType="zoom"
-            >
-              <DetailRow
-                image={HomeImage}
-                detailTitle="No, Really Fast"
-                detailText="Build and deploy your app in minutes"
-              />
-            </SimpleAnimation>
-            <SimpleAnimation
-              delay={1500}
-              duration={1000}
-              fade
-              staticType="zoom"
-            >
-              <DetailRow
-                image={HomeImage}
-                detailTitle="Really, Really Fast"
-                detailText="Get started now!"
-              />
-            </SimpleAnimation>
           </View>
-          <View style={{ height: 100 }} />
-        </ScrollView>
+          <View style={styles.slide}>
+            <Image source={Welcome2Image} style={styles.detailImage} />
+            <Text style={styles.text}>We build apps fast.</Text>
+            <Text style={styles.subtext}>
+              Our template is designed to get you up and running with an Expo
+              project in no time.
+            </Text>
+          </View>
+          <View style={styles.slide}>
+            <Image source={Welcome3Image} style={styles.detailImage} />
+            <Text style={styles.text}>No, like really fast.</Text>
+            <Text style={styles.subtext}>
+              We've included a bunch of pre-built components and screens to help
+              you get started.
+            </Text>
+          </View>
+        </Swiper>
+
         <View
           style={{
             width: "100%",
-            position: "absolute",
-            bottom: 0,
-            backgroundColor: GlobalColors.white,
+            paddingHorizontal: 24,
           }}
         >
-          <SimpleAnimation delay={2000} duration={1000} fade staticType="zoom">
-            <Pressable
-              style={styles.getStartedButton}
-              onPress={() => {
-                navigation.goBack();
-              }}
-            >
-              <Text style={styles.buttonText}>Get Started</Text>
-            </Pressable>
-          </SimpleAnimation>
+          <Pressable
+            style={styles.getStartedButton}
+            onPress={() => {
+              swiperIndex === 2
+                ? navigation.goBack()
+                : swiperRef.current.scrollBy(1);
+            }}
+          >
+            <Text style={styles.buttonText}>
+              {swiperIndex === 2 ? "Get Started" : "Next"}
+            </Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaView>
@@ -160,61 +93,8 @@ const styles = StyleSheet.create({
     padding: 24,
     paddingBottom: 12,
   },
-  welcomeMessage: {
-    fontSize: 36,
-    fontFamily: "Montserrat-Bold",
-    color: GlobalColors.black,
-  },
-  title: {
-    fontSize: 28,
-    lineHeight: 40,
-    fontFamily: "Montserrat-Bold",
-    color: GlobalColors.black,
-  },
-  input: {
-    padding: 24,
-    fontSize: 18,
-    fontFamily: "Platypi-Regular",
-  },
-  userImage: {
-    width: 125,
-    height: 125,
-    borderRadius: 150,
-  },
-  detailImage: {
-    width: 36,
-    height: 36,
-    tintColor: GlobalColors.black,
-  },
-  fullName: {
-    fontSize: 28,
-    fontFamily: "Montserrat-Bold",
-    textAlign: "center",
-    paddingTop: 24,
-    paddingBottom: 24,
-    color: GlobalColors.black,
-  },
-  email: {
-    fontSize: 18,
-    fontFamily: "Montserrat-Regular",
-    paddingTop: 24,
-    color: GlobalColors.black,
-  },
-  detailTextBold: {
-    fontSize: 18,
-    fontFamily: "Montserrat-Bold",
-    color: GlobalColors.black,
-  },
-  detailText: {
-    fontSize: 18,
-    fontFamily: "Montserrat-Regular",
-    color: GlobalColors.black,
-  },
   getStartedButton: {
-    marginLeft: 24,
-    marginRight: 24,
-    marginTop: 16,
-    marginBottom: 16,
+    marginVertical: 16,
     padding: 12,
     borderRadius: 8,
     backgroundColor: GlobalColors.blue,
@@ -222,6 +102,34 @@ const styles = StyleSheet.create({
   buttonText: {
     color: GlobalColors.white,
     textAlign: "center",
-    fontFamily: "Montserrat-bold",
+    fontFamily: "Montserrat-Bold",
+  },
+  wrapper: {},
+  slide: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 24,
+    marginBottom: 100,
+  },
+  text: {
+    color: GlobalColors.black,
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontFamily: "Platypi-Bold",
+  },
+  subtext: {
+    color: GlobalColors.black,
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: 12,
+    fontFamily: "Montserrat-Regular",
+  },
+  detailImage: {
+    width: 300,
+    height: 300,
+    marginTop: 100,
+    marginBottom: 50,
   },
 });

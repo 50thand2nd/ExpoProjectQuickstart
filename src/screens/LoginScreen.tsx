@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   SafeAreaView,
   View,
@@ -22,16 +22,29 @@ type LoginScreenProps = {
 };
 
 export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
+  const hasWelcomed = useRef(false);
+
+  useEffect(() => {
+    if (!hasWelcomed.current) {
+      navigation.navigate("Welcome Screen");
+
+      // set the ref variable to true
+      hasWelcomed.current = true;
+    }
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center", paddingVertical: 100 }}>
-        <Image source={LogoImage} style={styles.logo} />
+        {/* <Image source={LogoImage} style={styles.logo} /> */}
         <Text style={styles.appName}>Expo Project Quickstart</Text>
         <Text style={styles.appDescription}>
           A template for your next great React Native app
         </Text>
       </View>
-      <View style={{ paddingBottom: 50 }}>
+      <View
+        style={{ paddingHorizontal: 36, paddingVertical: 24, width: "100%" }}
+      >
         <SignInWithOauth text="Sign in with Apple" strategy="oauth_apple" />
         <SignInWithOauth text="Sign in with Google" strategy="oauth_google" />
         <Pressable
@@ -52,6 +65,24 @@ export const LoginScreen = ({ route, navigation }: LoginScreenProps) => {
             Sign in with email
           </Text>
         </Pressable>
+        <View>
+          <Text
+            style={{
+              textAlign: "center",
+              fontFamily: "Montserrat-Regular",
+              margin: 12,
+            }}
+          >
+            By continuing, you agree to our
+            <Text style={{ color: GlobalColors.primary }}>
+              {" "}
+              Terms of Service{" "}
+            </Text>
+            and
+            <Text style={{ color: GlobalColors.primary }}> Privacy Policy</Text>
+            .
+          </Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -71,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   appName: {
-    fontSize: 48,
+    fontSize: 40,
     fontWeight: "bold",
     marginTop: 10,
     marginHorizontal: 20,
@@ -91,7 +122,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    width: 300,
+    // width: "48%",
     marginBottom: 12,
     flexDirection: "row",
   },
