@@ -3,6 +3,9 @@ import * as Haptics from "expo-haptics";
 import Toast from "react-native-toast-message";
 
 export const copyToClipboard = async (textToCopy: string) => {
+  if (!textToCopy) {
+    return;
+  }
   await Clipboard.setStringAsync(textToCopy);
   Toast.show({
     type: "success",
